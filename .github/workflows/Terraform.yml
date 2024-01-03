@@ -22,6 +22,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
        - name: Checkout repository
          uses: actions/checkout@v2
+         with:
+           token: ${{secrets.GITHUB_TOKEN}
        - name: Set up Terraform
          uses: hashicorp/setup-terraform@v1
          with:
