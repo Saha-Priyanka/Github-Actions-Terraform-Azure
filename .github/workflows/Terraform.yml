@@ -8,16 +8,12 @@ on:
   push:
     branches: 
     - main
-  pull_request:
-    branches: 
-    - main
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  terraform : 
+  terraform:
+    runs-on: ubuntu-latest
     name: 'Terraform'
   # This workflow contains a single job called "build"
     env:
@@ -28,38 +24,23 @@ jobs:
       
       
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    environment: dev
-    defaults:
-      run:
-        shell: bash
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: 'Terraform Format'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_subcommand: 'fmt'
-          tf_actions_working_dir: "./terraform"
+       - name: Checkout repository
+         uses: actions/checkout@v2
+       - name: Set up Terraform
+         uses: hashicorp/setup-terraform@v1
+         with:
+          terraform_version: '1.1.0'
 
       # Runs a single command using the runners shell
-      - name: 'Terraform Init'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: "./terraform"
+       - name: Initialize Terraform
+         run: terraform init
 
-      # Runs a set of commands using the runners shell
-      - name: 'Terraform Plan'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: "./terraform"
-      - name: 'Terraform Apply'
-        if : github.ref == 'refs/head/main'
-        with:
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: "./terraform"
+       - name: Terraform Plan
+         run: terraform plan -out=tfplan
+
+       - name: Apply Terraform
+         run: terraform apply tfplan -auto-approve
           
