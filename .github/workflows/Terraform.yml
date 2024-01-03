@@ -14,14 +14,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    name: 'Terraform'
-  # This workflow contains a single job called "build"
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_AD_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      
+    
       
     # The type of runner that the job will run on
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -33,7 +26,16 @@ jobs:
          uses: hashicorp/setup-terraform@v1
          with:
           terraform_version: '1.1.0'
-
+       - name: 'Login to Azure'
+         uses: azure/login@v1
+  # This workflow contains a single job called "build"
+         with: 
+            ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_AD_SUBSCRIPTION_ID }}
+            ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      
+     
       # Runs a single command using the runners shell
        - name: Initialize Terraform
          run: terraform init
