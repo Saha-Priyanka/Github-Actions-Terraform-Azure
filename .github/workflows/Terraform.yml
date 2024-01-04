@@ -28,7 +28,12 @@ jobs:
          uses: hashicorp/setup-terraform@v1
          with:
           terraform_version: '1.1.0'
-     
+       - name: Install Azure CLI
+         run: |
+          sudo apt-get update && sudo apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg
+          curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/debian/$(lsb_release -sr)/prod $(lsb_release -sr) main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null
+          sudo apt-get update && sudo apt-get install -y azure-cli
        - uses: Azure/login@v1
          with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
