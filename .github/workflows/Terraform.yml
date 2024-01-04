@@ -28,15 +28,10 @@ jobs:
          uses: hashicorp/setup-terraform@v1
          with:
           terraform_version: '1.1.0'
-       - name: 'Login to Azure'
-         uses: azure/login@v1
-  # This workflow contains a single job called "build"
-         with: 
-            client-id: ${{ secrets.AZURE_AD_CLIENT_ID }}
-            client-secret: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-            subscription-id: ${{ secrets.AZURE_AD_SUBSCRIPTION_ID }}
-            tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
-      
+     
+       - uses: Azure/login@v1
+         with:
+            creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRE }}","subscriptionId":"${{ secrets.AZURE_AD_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
      
       # Runs a single command using the runners shell
        - name: Initialize Terraform
