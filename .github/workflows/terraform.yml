@@ -47,7 +47,7 @@ name: 'Terraform'
 on:
   push:
     branches: [ "main" ]
-  pull_request:
+   pull_request: 
  
 permissions:
   id-token: write
@@ -72,7 +72,7 @@ jobs:
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
         token: ${{secrets.GITHUB_TOKEN}}
 
@@ -85,22 +85,27 @@ jobs:
        # cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
  
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Format
+      uses: hashicorp//terraform-github-actions@master
+      with:
+        tf_actions_working_dir: "./terraform"
+        tf_actions_subcommand: 'fmt'
     - name: Terraform Init
       uses: hashicorp//terraform-github-actions@master
       with:
         tf_actions_working_dir: "./terraform"
-        tf_actions_subcommand: "init"
+        tf_actions_subcommand: 'init'
  
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+    #- name: Terraform Format
+     # run: terraform fmt -check
  
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       uses: hashicorp//terraform-github-actions@master
       with:
         tf_actions_working_dir: "./terraform"
-        tf_actions_subcommand: "plan"
+        tf_actions_subcommand: 'plan'
       #run: terraform plan -input=false
  
       # On push to "main", build or change infrastructure according to Terraform configuration files
@@ -109,6 +114,6 @@ jobs:
       uses: hashicorp//terraform-github-actions@master
       with:
         tf_actions_working_dir: "./terraform"
-        tf_actions_subcommand: "apply -auto-approve"
+        tf_actions_subcommand: 'apply -auto-approve'
       #if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'   #-input=false
       #run: terraform apply -auto-approve  
