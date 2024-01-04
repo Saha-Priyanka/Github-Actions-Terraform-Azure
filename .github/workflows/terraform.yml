@@ -50,8 +50,14 @@ on:
   pull_request:
 
 permissions:
+  id-token: write
   contents: read
-
+  pull-requests: write
+env:
+  ARM_CLIENT_ID: "${{ secrets.AZURE_AD_CLIENT_ID }}"
+  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_AD_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.AZURE_AD_TENANT_ID }}"
+  ARM_CLIENT_SECRET: "${{ secrets.AZURE_AD_CLIENT_SECRET }}"
 jobs:
   terraform:
     name: 'Terraform'
@@ -74,7 +80,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
+        terraform_wrapper: false
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
