@@ -11,7 +11,7 @@ locals {
 
 }
 terraform {
-    required_version = ">= 0.9.0"
+    required_version = 0.14.8
     backend "azurerm" {
         resource_group_name = "GitHub_RG"
         storage_account_name = "githubstorageacc"
