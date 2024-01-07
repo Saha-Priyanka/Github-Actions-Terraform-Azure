@@ -66,5 +66,5 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_working_dir: "./terraform"
-        tf_actions_subcommand: 'apply'
-      run: terraform apply -auto-approve
+        tf_actions_subcommand: 'apply -auto-approve'
+     # run: terraform apply -auto-approve
