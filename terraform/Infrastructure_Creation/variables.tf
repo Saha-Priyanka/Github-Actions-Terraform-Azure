@@ -1,3 +1,12 @@
+variable "azure_subscription_id" {
+    type = "string"
+    default = "793729a4-a745-4e4f-8b8d-88bda288a86a"
+}
+variable "azure_tenant_id" {
+    type = "string"
+    default = "1e9cc706-c3fd-4b8c-9dbd-a073e7384b56"
+
+
 /*variable username {}*/
 
 /*data "azurerm_network_interface" "network_interface" {
