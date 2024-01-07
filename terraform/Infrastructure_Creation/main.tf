@@ -9,9 +9,21 @@ locals {
 }
   */
 
+}
 terraform {
+    required_version = ">= 0.9.0"
+    backend "azurerm" {
+        resource_group_name = "GitHub_RG"
+        storage_account_name = "githubstorageacc"
+        container_name = "tfstate"
+        key = "terraform.tfstate"
+        arm_subscription_id = "${var.azure_subscription_id}"
+        arm_tenant_id = "${var.azure_tenant_id}"
+    }
+}
+/*terraform {
   backend "azurerm" {}
- }
+ }*/
 
 provider "azurerm" {
   features {}
