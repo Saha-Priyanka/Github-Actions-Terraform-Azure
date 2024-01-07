@@ -20,8 +20,8 @@ jobs:
       ARM_TENANT_ID: "${{ secrets.AZURE_AD_TENANT_ID }}"
       ARM_CLIENT_SECRET: "${{ secrets.AZURE_AD_CLIENT_SECRET }}"
       ARM_STORAGE_ACCOUNT_NAME: "${{ secrets.STORAGE_ACCOUNT_NAME }}"
-      CONTAINER_NAME: "${{ secrets.CONTAINER_NAME }}"
-      KEY: "${{ secrets.KEY }}"
+      ARM_CONTAINER_NAME: "${{ secrets.CONTAINER_NAME }}"
+      ARM_KEY: "${{ secrets.KEY }}"
     defaults:
       run:
         shell: bash
