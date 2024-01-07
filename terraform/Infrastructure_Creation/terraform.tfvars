@@ -72,7 +72,7 @@ capacity = 1
 
 #keyvault
 
-keyvaults_security_app_production = "keyvaultsecurity0545" #"priya6tamankavault"
+keyvaults_security_app_production = "keyvaultsecurity0845" #"priya6tamankavault"
 #sku_family = "A"
 /*
 resource_group_name = "ETPXCCDEV-RG"
