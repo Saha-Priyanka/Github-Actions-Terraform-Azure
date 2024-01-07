@@ -89,12 +89,10 @@ jobs:
        # cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
  
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+   
     - name: Terraform Format
-      uses: hashicorp//terraform-github-actions@master
-      with:
-        tf_actions_version: 0.14.8
-        tf_actions_working_dir: "./terraform"
-        tf_actions_subcommand: 'fmt'
+      run: |
+        terraform fmt -check ./terraform
     - name: Terraform Init
       uses: hashicorp//terraform-github-actions@master
       with:
