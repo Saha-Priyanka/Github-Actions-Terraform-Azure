@@ -5,8 +5,7 @@ variable "azure_subscription_id" {
 variable "azure_tenant_id" {
     type = "string"
     default = "1e9cc706-c3fd-4b8c-9dbd-a073e7384b56"
-
-
+}
 /*variable username {}*/
 
 /*data "azurerm_network_interface" "network_interface" {
