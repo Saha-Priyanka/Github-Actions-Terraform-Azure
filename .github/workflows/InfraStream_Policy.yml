@@ -33,7 +33,7 @@ jobs:
 
       - name: List Files in Terraform Directory
         run: |
-          ls -R ./terraform
+          ls -R ./InfraStream_Policy
 
       - name: Print Current Working Directory
         run: |
@@ -52,27 +52,27 @@ jobs:
 
       - name: Terraform Format
         run: |
-          terraform fmt -check ./terraform
+          terraform fmt -check ./InfraStream_Policy
 
       - name: Terraform Init
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyDefinition"
           tf_actions_subcommand: 'init'
 
       - name: Terraform Plan
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyDefinition"
           tf_actions_subcommand: 'plan'
 
       - name: Terraform Apply
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyDefinition"
           tf_actions_subcommand: 'apply'
         # run: terraform apply -auto-approve
 
@@ -99,7 +99,7 @@ jobs:
 
       - name: List Files in Terraform Directory
         run: |
-          ls -R ./terraform
+          ls -R ./InfraStream_Policy
 
       - name: Print Current Working Directory
         run: |
@@ -118,27 +118,27 @@ jobs:
 
       - name: Terraform Format
         run: |
-          terraform fmt -check ./terraform
+          terraform fmt -check ./InfraStream_Policy
 
       - name: Terraform Init
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyInitiative"
           tf_actions_subcommand: 'init'
 
       - name: Terraform Plan
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyInitiative"
           tf_actions_subcommand: 'plan'
 
       - name: Terraform Apply
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyInitiative"
           tf_actions_subcommand: 'apply'
         # run: terraform apply -auto-approve
 
@@ -165,7 +165,7 @@ jobs:
 
       - name: List Files in Terraform Directory
         run: |
-          ls -R ./terraform
+          ls -R ./InfraStream_Policy
 
       - name: Print Current Working Directory
         run: |
@@ -184,26 +184,26 @@ jobs:
 
       - name: Terraform Format
         run: |
-          terraform fmt -check ./terraform
+          terraform fmt -check ./InfraStream_Policy
 
       - name: Terraform Init
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyAssignment"
           tf_actions_subcommand: 'init'
 
       - name: Terraform Plan
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyAssignment"
           tf_actions_subcommand: 'plan'
 
       - name: Terraform Apply
         uses: hashicorp//terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_working_dir: "./terraform/Infrastructure_Creation"
+          tf_actions_working_dir: "./InfraStream_Policy/policyAssignment"
           tf_actions_subcommand: 'apply'
         # run: terraform apply -auto-approve
